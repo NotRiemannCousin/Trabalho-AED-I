@@ -23,15 +23,16 @@ int main() {
         getchar();
 
         switch (option) {
-            case 1: AddRecipeOp(book); getchar();     break;
-            case 2: SelectRecipeOp(book); getchar();  break;
-            case 3: ListRecipesOp(book); getchar();   break;
-            case 4: OrderRecipesOp(book); getchar();  break;
-            case 5: printf("Saindo...\n"); break;
+            case 1: AddRecipeOp(book); getchar();    break;
+            case 2: RemoveRecipeOp(book);            break;
+            case 3: SelectRecipeOp(book);            break;
+            case 4: ListRecipesOp(book); getchar();  break;
+            case 5: OrderRecipesOp(book);            break;
+            case 6: printf("Saindo...\n"); break;
             default:
                 printf("Opcao invalida!\n");
         }
-    } while (option != 5);
+    } while (option != 6);
 
 
     SaveRecipesToFile(book, filename);

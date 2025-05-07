@@ -1,20 +1,20 @@
 RECIPE;Pao de Queijo;Tradicional com queijo minas;5
+INGREDIENT;Sal;2;1
 INGREDIENT;Polvilho;1;500
 INGREDIENT;Queijo Minas;1;300
-INGREDIENT;Ovo;1;2
 INGREDIENT;Leite;0;200
-RECIPE;Feijao Tropeiro;Feijao com farinha e linguica;4
+INGREDIENT;Ovo;1;2
+RECIPE;Leite;Tradicional com queijo minas;5
 INGREDIENT;Feijao;1;300
 INGREDIENT;Farinha de mandioca;1;200
 INGREDIENT;Linguica;1;150
 INGREDIENT;Ovo;0;2
 INGREDIENT;Couve;0;50
-RECIPE;Frango com Quiabo;Típico de Minas Gerais;4
+RECIPE;Couve;Tradicional com queijo minas;5
 INGREDIENT;Frango;1;500
 INGREDIENT;Quiabo;1;300
 INGREDIENT;Alho;0;10
 INGREDIENT;Cebola;0;50
-RECIPE;Doce de Leite;Sobremesa cremosa artesanal;5
+RECIPE;Cebola;Tradicional com queijo minas;5
 INGREDIENT;Leite;1;1000
 INGREDIENT;Acúcar;1;500
-INGREDIENT;Bicarbonato;0;1

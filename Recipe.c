@@ -60,22 +60,15 @@ int AddIngredientAtBack(Recipe* recipe, Ingredient ingredient) {
 
 
 
-int RemoveIngredient(Recipe* recipe, Ingredient* ingredient) {
-    if(!recipe) return -1;
+int RemoveIngredient(Ingredient* ingredient) {
+    if(!ingredient) return -1;
+    if(!ingredient->next || ingredient->last) return -2;
 
-    Ingredient *target = recipe->dummyFront->next;
+    ingredient->next->last = ingredient->last;
+    ingredient->last->next = ingredient->next;
 
-    while(target != recipe->dummyBack && target != ingredient)
-        target++;
-
-    if(target == recipe->dummyBack)
-        return -1;
-
-    target->next->last = target->last;
-    target->last->next = target->next;
-
-    free(target->name);
-    free(target);
+    free(ingredient->name);
+    free(ingredient);
 
     return 0;
 }
@@ -86,7 +79,7 @@ int RemoveIngredientAtIndex(Recipe* recipe, int index) {
     Ingredient *target = recipe->dummyFront->next;
     int i = 0;
     while(i < index && target != recipe->dummyBack)
-        i++, target++;
+        i++, target = target->next;
 
     if(i != index || target == recipe->dummyBack)
         return -1;
@@ -94,7 +87,6 @@ int RemoveIngredientAtIndex(Recipe* recipe, int index) {
     target->next->last = target->last;
     target->last->next = target->next;
 
-    free(target->name);
     free(target);
 
     return 0;
@@ -113,7 +105,6 @@ int ClearIngredients(Recipe* recipe) {
     Ingredient* next   = recipe->dummyFront->next->next;
 
     for(; target != recipe->dummyBack; target = next, next = next->next) {
-        free(target->name);
         free(target);
     }
 
@@ -235,6 +226,25 @@ int AddRecipe(RecipeDescriptor* descriptor, Recipe recipe) {
     return 0;
 }
 
+
+int RemoveRecipe(RecipeDescriptor* descriptor, Recipe* recipe) {
+    if (!descriptor || !recipe) return -1;
+
+    Recipe* prev = descriptor->dummy;
+    while (prev->next && prev->next != recipe)
+        prev = prev->next;
+
+    Recipe* toRemove = prev->next;
+    if (!toRemove) return -1;
+
+    prev->next = toRemove->next;
+    ClearIngredients(toRemove);
+    free(toRemove);
+
+    descriptor->count--;
+
+    return 0;
+}
 
 int RemoveRecipeAtIndex(RecipeDescriptor* descriptor, int index) {
     if (!descriptor || index < 0 || index >= descriptor->count) return -1;

@@ -38,8 +38,9 @@ int LoadRecipesFromFile(RecipeDescriptor* descriptor, const char* filename) {
         }
 
         AddRecipe(descriptor, *recipe);
+        free(recipe);
 
-        if (!feof(f)) fseek(f, -strlen(line), SEEK_CUR);
+        if (!feof(f)) fseek(f, -strlen(line) - 1, SEEK_CUR);
     }
 
     fclose(f);

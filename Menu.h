@@ -19,6 +19,7 @@ void ListEssentialsIngredientsOp(const Recipe* recipe);
 
 // =============================    main    =============================
 void AddRecipeOp(RecipeDescriptor* book);
+void RemoveRecipeOp(RecipeDescriptor* book);
 void SelectRecipeOp(RecipeDescriptor* book);
 void ListRecipesOp(const RecipeDescriptor* book);
 void OrderRecipesOp(RecipeDescriptor* book);

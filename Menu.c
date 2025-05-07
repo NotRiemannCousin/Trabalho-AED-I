@@ -12,10 +12,11 @@ void ShowMainMenu() {
     printf(
         "\n=== LIVRO DE RECEITAS ===\n"
         "1. Criar nova receita\n"
-        "2. Selecionar receita\n"
-        "3. Listar receitas\n"
-        "4. Ordenar receitas\n"
-        "5. Sair\n"
+        "2. Remover receita\n"
+        "3. Selecionar receita\n"
+        "4. Listar receitas\n"
+        "5. Ordenar receitas\n"
+        "6. Sair\n"
         "Escolha: ");
 }
 
@@ -46,6 +47,42 @@ void AddRecipeOp(RecipeDescriptor* book) {
 
     AddRecipe(book, *newRecipe);
     free(newRecipe);
+}
+
+void RemoveRecipeOp(RecipeDescriptor* book) {
+    if(!book || book->count == 0) {
+        printf("Sem receitas pra remover!\n");
+        return;
+    }
+    printf(
+        "Remover:\n"
+        "1. Posicao especifica\n"
+        "2. Nome\n"
+        "Escolha: ");
+
+    int removeOption;
+    scanf("%d", &removeOption);
+
+    switch(removeOption){
+        case 1:
+            printf("Posicao: ");
+            int index;
+            scanf("%d", &index);
+            getchar();
+            RemoveRecipeAtIndex(book, index);
+            break;
+        case 2:
+            printf("Posicao: ");
+            char name[512];
+            scanf("%s[^\n]", &index);
+            getchar();
+            RemoveRecipe(book, SelectRecipeByName(book, name));
+            break;
+
+        default:
+            printf("Opcao invalida!");
+            getchar();
+    }
 }
 
 void SelectRecipeOp(RecipeDescriptor* book) {
@@ -154,9 +191,9 @@ void ManageRecipeOp(Recipe* recipe) {
 
         switch (option) {
             case 1: AddIngredientOp(recipe); getchar();             break;
-            case 2: RemoveIngredientOp(recipe); getchar();          break;
+            case 2: RemoveIngredientOp(recipe);                     break;
             case 3: ListIngredientsOp(recipe); getchar();           break;
-            case 4: OrderIngredientsOp(recipe); getchar();          break;
+            case 4: OrderIngredientsOp(recipe);                     break;
             case 5: ListEssentialsIngredientsOp(recipe); getchar(); break;
             case 6: break;
             default: printf("Opcao invalida!\n");
@@ -224,26 +261,24 @@ void RemoveIngredientOp(Recipe* recipe) {
         "3. Posicao especifica\n"
         "Escolha: ");
 
-    while(1) {
+
         int removeOption;
         scanf("%d", &removeOption);
         getchar();
 
-        switch(removeOption){
-            case 1: RemoveIngredientAtFront(recipe); break;
-            case 2: RemoveIngredientAtBack(recipe); break;
-            case 3:
-                printf("Posicao: ");
-                int index;
-                scanf("%d", &index);
-                getchar();
-                RemoveIngredientAtIndex(recipe, index);
-                break;
-            default:
-                printf("Opcao invalida!");
-            continue;
-        }
-        break;
+    switch(removeOption){
+        case 1: RemoveIngredientAtFront(recipe); break;
+        case 2: RemoveIngredientAtBack(recipe); break;
+        case 3:
+            printf("Posicao: ");
+            int index;
+            scanf("%d", &index);
+            getchar();
+            RemoveIngredientAtIndex(recipe, index);
+            break;
+        default:
+            printf("Opcao invalida!");
+            getchar();
     }
 }
 
@@ -269,18 +304,18 @@ void OrderIngredientsOp(Recipe* recipe){
         "3. Quantidade\n"
         "Escolha: ");
 
-    while(1) {
-        int removeOption;
-        scanf("%d", &removeOption);
-        getchar();
 
-        switch(removeOption){
-            case 1:  OrderByEssentiality(recipe);  break;
-            case 2:  OrderByLexicographic(recipe); break;
-            case 3:  OrderByCount(recipe);         break;
-            default: printf("Opcao invalida!");    continue;
-        }
-        break;
+    int removeOption;
+    scanf("%d", &removeOption);
+    getchar();
+
+    switch(removeOption){
+        case 1:  OrderByEssentiality(recipe);  break;
+        case 2:  OrderByLexicographic(recipe); break;
+        case 3:  OrderByCount(recipe);         break;
+        default:
+            printf("Opcao invalida!");
+            getchar();
     }
 }
 

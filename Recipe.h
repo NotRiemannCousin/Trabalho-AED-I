@@ -28,7 +28,7 @@ int AddIngredientAtIndex(Recipe* recipe, Ingredient ingredient, int index);
 int AddIngredientAtFront(Recipe* recipe, Ingredient ingredient);
 int AddIngredientAtBack(Recipe* recipe, Ingredient ingredient);
 
-int RemoveIngredient(Recipe* recipe, Ingredient *ingredient);
+int RemoveIngredient(Ingredient *ingredient);
 int RemoveIngredientAtIndex(Recipe* recipe, int index);
 int RemoveIngredientAtFront(Recipe* recipe);
 int RemoveIngredientAtBack(Recipe* recipe);
@@ -45,6 +45,7 @@ Recipe* SelectRecipeAtIndex(RecipeDescriptor* recipeDescriptor, int index);
 Recipe* SelectRecipeByName(RecipeDescriptor* RecipeDescriptor, char nome[]);
 
 int AddRecipe(RecipeDescriptor* RecipeDescriptor, Recipe recipe);
+int RemoveRecipe(RecipeDescriptor* descriptor, Recipe* recipe);
 int RemoveRecipeAtIndex(RecipeDescriptor* descriptor, int index);
 
 int OrderByRating(RecipeDescriptor* RecipeDescriptor);
